@@ -1,0 +1,48 @@
+PROBLEM: 
+          0
+        / | \
+       1  2  4
+              \
+               3
+               
+
+Output: 0 1 2 4 3
+
+Explanation: 
+0 is connected to 1, 2, 4.
+1 is connected to 0.
+2 is connected to 0.
+3 is connected to 0.
+4 is connected to 0, 3.
+so starting from 0, it will go to 1 then 2 then 4, and then from 4 to 3.
+Thus dfs will be 0 1 2 4 3.
+
+
+SOLUTION:
+
+
+void dfs_helper(int src, bool visited[], vector<int> &res, vector<int> adj[])
+	{
+	    res.push_back(src);
+	    visited[src]=true;
+	    
+	    for(auto node: adj[src]){
+	        if(visited[node]==false)
+	            dfs_helper(node, visited, res, adj);
+	    }
+	}
+	vector<int>dfsOfGraph(int V, vector<int> adj[])
+	{
+	    vector<int> res;
+	    
+	    bool visited[V]={false};
+	   
+	    dfs_helper(0,visited,res,adj);
+	    return res;
+	}
+  
+  
+  
+  
+  
+  
